@@ -41,12 +41,13 @@ function InsertionSort(tab, gap = 1, debut = 0)
     console.log("Tableau non trié insertion : ", tab);
     for (debut; debut < tab.length; debut+=gap)
     {
+        console.log("parcours : ", debut);
         stockElement = tab[debut];
         j = debut;
         while(j > 0 && tab[j - 1] > stockElement)
         {
             tab[j] = tab[j - 1];
-            j = j -1;
+            j = j - 1;
         }
 
         tab[j] = stockElement;
