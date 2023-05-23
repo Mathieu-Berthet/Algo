@@ -1,10 +1,14 @@
 console.log("Coucou");
 
 
-let tabToSort = [3,9,7,1,6,2,8,4,5];
+let tabToSortInsertion = [3,9,7,1,6,2,8,4,5];
+let tabToSortSelection = [3,9,7,1,6,2,8,4,5];
+let tabToSortBulle = [3,9,7,1,6,2,8,4,5];
+let tabToSortBulleStop = [3,9,7,1,6,2,8,4,5];
+let tabToSortShell = [3,9,7,1,6,2,8,4,5];
+let tabToSortPerso = [3,9,7,1,6,2,8,4,5];
 let stockElement = 0;
 
-console.log("Tableau non trié : ", tabToSort);
 //Mon algo
 /*for(let i = 0; i < tabToSort.length; i++)
 {
@@ -30,112 +34,123 @@ console.log("Tableau non trié : ", tabToSort);
 console.log("Tableau trié fini : ", tabToSort);*/
 
 //Tri Insertion
-let j = 0;
 
-/*for (let i = 0; i < tabToSort.length; i++)
+function InsertionSort(tab, gap = 1, debut = 0)
 {
-    stockElement = tabToSort[i];
-    j = i;
-    while(j > 0 && tabToSort[j - 1] > stockElement)
+    let j = 0;
+    console.log("Tableau non trié insertion : ", tab);
+    for (debut; debut < tab.length; debut+=gap)
     {
-        tabToSort[j] = tabToSort[j - 1];
-        j = j -1;
-    }
-
-    tabToSort[j] = stockElement;
-    console.log("Tableau trié, tri insertion : ", tabToSort);
-}
-console.log("Tableau trié fini, tri insertion : ", tabToSort);*/
-
-//Tri Selection
-/*let longueur = tabToSort.length;
-for (let i = 0; i < longueur - 2; i++)
-{
-    let min = i;
-    for(let j = i + 1; j <longueur; j++)
-    {
-        if(tabToSort[j] < tabToSort[min])
+        stockElement = tab[debut];
+        j = debut;
+        while(j > 0 && tab[j - 1] > stockElement)
         {
-            min = j;
+            tab[j] = tab[j - 1];
+            j = j -1;
         }
-    }
-    if(min !== i)
-    {
-        stockElement = tabToSort[min];
-        tabToSort[min] = tabToSort[i];
-        tabToSort[i] = stockElement;
-    }
-    console.log("Tableau trié, tri selection : ", tabToSort);
-}
-console.log("Tableau trié fini, tri selection : ", tabToSort);*/
 
+        tab[j] = stockElement;
+        console.log("Tableau trié, tri insertion : ", tab);
+    }
+    console.log("Tableau trié fini, tri insertion : ", tab);
+}
+//Tri Selection
+function SelectionSort(tab)
+{
+    console.log("Tableau non trié selection : ", tab);
+    let longueur = tab.length;
+    for (let i = 0; i < longueur - 2; i++)
+    {
+        let min = i;
+        for(let j = i + 1; j <longueur; j++)
+        {
+            if(tab[j] < tab[min])
+            {
+                min = j;
+            }
+        }
+        if(min !== i)
+        {
+            stockElement = tab[min];
+            tab[min] = tab[i];
+            tab[i] = stockElement;
+        }
+        console.log("Tableau trié, tri selection : ", tab);
+    }
+    console.log("Tableau trié fini, tri selection : ", tab);
+}
 
 
 //Tri a bulles
 //Version sans condition d'arrêt
-/*for (let i = tabToSort.length; i > 1; i--)
+function BubbleSortWithoutStop(tab)
 {
-    let triOk = false;
-    for(let j = 0; j < i-1; j++)
+    console.log("Tableau non trié  bubble : ", tab);
+    for (let i = tab.length; i > 1; i--)
     {
-        if(tabToSort[j +1] < tabToSort[j])
+        let triOk = false;
+        for(let j = 0; j < i-1; j++)
         {
-            stockElement = tabToSort[j+1];
-            tabToSort[j+1] = tabToSort[j];
-            tabToSort[j] = stockElement;
+            if(tab[j +1] < tab[j])
+            {
+                stockElement = tab[j+1];
+                tab[j+1] = tab[j];
+                tab[j] = stockElement;
+            }
         }
+        console.log("Tableau trié, tri à bulles : ", tab);
     }
-    console.log("Tableau trié, tri à bulles : ", i, tabToSort);
-}*/
-
+    console.log("Tableau trié fini, tri à bulles : ", tab);
+}
 
 //2e Version Tri à bulle : Do While, Version avec condition d'arrêt
-/*let nbPassage = 0;
-let triOk = false;
-do
+function BubbleSortWithStop(tab)
 {
-    triOk = false;
-    for(let i = 0; i < tabToSort.length - 1 - nbPassage; i++)
+    let nbPassage = 0;
+    let triOk = false;
+    console.log("Tableau non trié bubble 2 : ", tab);
+    do
     {
-        if(tabToSort[i] > tabToSort[i + 1])
+        triOk = false;
+        for(let i = 0; i < tab.length - 1 - nbPassage; i++)
         {
-            stockElement = tabToSort[i+1];
-            tabToSort[i+1] = tabToSort[i];
-            tabToSort[i] = stockElement;
-            triOk = true;
+            if(tab[i] > tab[i + 1])
+            {
+                stockElement = tab[i+1];
+                tab[i+1] = tab[i];
+                tab[i] = stockElement;
+                triOk = true;
+            }
+
         }
-
-    }
-    nbPassage++;
-    console.log("Tableau trié, tri à bulles : ", tabToSort);
-} while(triOk);
+        nbPassage++;
+        console.log("Tableau trié, tri à bulles 2 : ", tab);
+    } while(triOk);
 
 
-console.log("Tableau trié fini, tri à bulles : ", tabToSort);*/
-
+    console.log("Tableau trié fini, tri à bulles 2 : ", tab);
+}
 
 
 //Tri de Shell
-let tabInterval = [3,2,1];
+function ShellSort(tab) {
+    let tabInterval = [3,2,1];
 
-for(let gap = 0; gap < tabInterval.length; gap++)
-{
-    for(debut = 0; debut < gap; debut++)
+    console.log("Tableau non trié Shell : ", tab);
+    for(let gap = 0; gap < tabInterval.length; gap++)
     {
-        for (let i = debut; i < tabToSort.length; i += gap)
+        for(let debut = 0; debut < tabInterval[gap]; debut++)
         {
-            stockElement = tabToSort[i];
-            j = i;
-            while (j > 0 && tabToSort[j - 1] > stockElement)
-            {
-                tabToSort[j] = tabToSort[j - 1];
-                j = j - 1;
-            }
-            tabToSort[j] = stockElement;
-            console.log("Tableau trié, tri par Shell : ", tabToSort);
-            console.table(tabToSort);
+            InsertionSort(tab, tabInterval[gap], debut);
+            console.log("Tableau trié, tri par Shell : ", tab);
         }
     }
+
+    console.log("Tableau trié fini, tri par Shell : ", tab);
 }
 
-console.log("Tableau trié fini, tri par Shell : ", tabToSort);
+//InsertionSort(tabToSortInsertion, 1, 0);
+//SelectionSort(tabToSortSelection);
+//BubbleSortWithoutStop(tabToSortBulle);
+//BubbleSortWithStop(tabToSortBulleStop);
+ShellSort(tabToSortShell);
