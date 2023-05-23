@@ -10,29 +10,32 @@ let tabToSortPerso = [3,9,7,1,6,2,8,4,5];
 let stockElement = 0;
 
 //Mon algo
-/*for(let i = 0; i < tabToSort.length; i++)
+function myAlgo(tab)
 {
-    for(let j = i + 1; j < tabToSort.length; j++)
+    console.log("Tableau non trié perso : ", tab);
+    for(let i = 0; i < tab.length; i++)
     {
-        if(tabToSort[j] > tabToSort[i])
+        for(let j = i + 1; j < tab.length; j++)
         {
+            if(tab[j] > tab[i])
+            {
 
-        }
-        else if(tabToSort[j] < tabToSort[i])
-        {
-            stockElement = tabToSort[j];
-            tabToSort[j] = tabToSort[i];
-            tabToSort[i] = stockElement;
-        }
-        else
-        {
+            }
+            else if(tab[j] < tab[i])
+            {
+                stockElement = tab[j];
+                tab[j] = tab[i];
+                tab[i] = stockElement;
+            }
+            else
+            {
 
+            }
         }
+        console.log("Tableau trié, tri perso: ", tab);
     }
-    console.log("Tableau trié : ", tabToSort);
+    console.log("Tableau trié fini, tri perso : ", tab);
 }
-console.log("Tableau trié fini : ", tabToSort);*/
-
 //Tri Insertion
 
 function InsertionSort(tab, gap = 1, debut = 0)
@@ -150,8 +153,9 @@ function ShellSort(tab) {
     console.log("Tableau trié fini, tri par Shell : ", tab);
 }
 
+myAlgo(tabToSortPerso);
 //InsertionSort(tabToSortInsertion, 1, 0);
 //SelectionSort(tabToSortSelection);
 //BubbleSortWithoutStop(tabToSortBulle);
 //BubbleSortWithStop(tabToSortBulleStop);
-ShellSort(tabToSortShell);
+//ShellSort(tabToSortShell);
