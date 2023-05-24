@@ -153,9 +153,114 @@ function ShellSort(tab) {
     console.log("Tableau trié fini, tri par Shell : ", tab);
 }
 
-myAlgo(tabToSortPerso);
+//myAlgo(tabToSortPerso);
 //InsertionSort(tabToSortInsertion, 1, 0);
 //SelectionSort(tabToSortSelection);
 //BubbleSortWithoutStop(tabToSortBulle);
 //BubbleSortWithStop(tabToSortBulleStop);
 //ShellSort(tabToSortShell);
+
+////////////////////////////////////////////////////// RECURSIVITE //////////////////////////////////////////////////////////////
+function factorielle(n)
+{
+    let result = 0;
+    if(n === 0)
+    {
+        return 1;
+    }
+    else if(n > 0)
+    {
+        //console.log("factorielle : ", result);
+        return n * factorielle(n-1);
+        //console.log("factorielle : ", result);
+    }
+    else
+    {
+
+    }
+}
+
+
+
+function fibo(n)
+{
+    let result = 0;
+    if(n === 0)
+    {
+        result += 0;
+        //console.log("fibo : ", result);
+    }
+    else if(n === 1)
+    {
+        result += 1;
+        //console.log("fibo : ", result);
+    }
+    else
+    {
+        result += fibo(n-1) + fibo(n-2);
+        console.log("fibo apres : ", result);
+    }
+
+    return result;
+}
+
+function syracuse(n)
+{
+    let result = 0;
+    //console.log(n, "->");
+    if(n < 0)
+    {
+        console.log("Le nombre est inférieur à 0, comment voulait vous faire le calcul ?");
+        return result;
+    }
+    else
+    {
+        if(n === 0)
+        {
+            console.log(n);
+        }
+        else if(n === 1)
+        {
+            console.log(1);
+        }
+        else if(n%2 === 0)
+        {
+            result = n / 2;
+            console.log(n / 2, "->");
+            syracuse(result);
+        }
+        else if(n%2 === 1)
+        {
+            result = n * 3 + 1
+            console.log(n * 3 + 1, "->");
+            syracuse(result);
+        }
+    }
+    return 1;
+}
+
+
+function pgcd(a,b)
+{
+    let myPgcd = 0;
+    if(b !== 0)
+    {
+        myPgcd = a%b;
+        return pgcd(b,myPgcd);
+    }
+    else
+    {
+        return a;
+    }
+}
+
+
+console.log("factoriel : ", factorielle(5));
+
+console.log("fibo : ", fibo(12));
+
+
+syracuse(7);
+
+console.log("pgcd : ", pgcd(72,21));
+console.log("pgcd : ", pgcd(12,4));
