@@ -167,7 +167,7 @@ function partage(tab, first, last, pivot)
     j = first;
     for(let i = first; i < last; i++)
     {
-        if(tab[i] < tab[last])
+        if(tab[i] <= tab[last])
         {
             stockElement = tab[i];
             tab[i] = tab[j];
@@ -193,45 +193,109 @@ function QuickSort(tab, firstElem, lastElem)
         QuickSort(tab, firstElem, pivot - 1);
         QuickSort(tab, pivot + 1, lastElem);
     }
-
     console.log("Tableau trié fini, tri rapide : ", tab);
 }
 
-function MergeSort(tab)
+/*function MergeSort(tab, size)
 {
     console.log("Tableau non trié, tri fusion : ", tab);
-    if(tab.length == 1)
+    let mid = Math.floor(size/2);
+    let afterMid = size - mid;
+    let testTab = [];
+    if(afterMid >= 2)
     {
-        console.log("Tableau trié fini, tri fusion : ", tab);
-        return tab;
+        testTab = MergeSort(tab, afterMid);
+        if(mid >= 2)
+        {
+            MergeSort(testTab, size);
+        }
     }
     else
     {
-        fusion(MergeSort(tab[0], ...[tab.length/2]), MergeSort(tab[tab.length/2 + 1], ...[tab.length]));
+        return testTab;
     }
+    testTab = fusion(tab, afterMid, testTab, mid);
+
+    return testTab;
+    console.log("Tableau trié fini, tri fusion : ", testTab);
 }
 
-function fusion(tabGauche, tabDroite)
+function fusion(tab, afterMid, tabDiv, middle)
 {
-    if(tabGauche === null)
+    for(let i = 0; i < tab.length; i++)
     {
-        return tabDroite;
+        if(tab[i+1] > tabDiv[i+1])
+        {
+            tab[i+1] = tabDiv[i+1];
+            if(middle == 1)
+            {
+                break;
+            }
+            middle--;
+        }
+        else
+        {
+            if(afterMid == 1)
+            {
+                while(middle >= 1)
+                {
+                    tabDiv[i] = tabDiv[i + 1];
+                    middle--;
+                }
+                break;
+            }
+            afterMid--;
+        }
     }
-    if(tabDroite === null)
+    return tabDiv;
+}*/
+
+function HeapSort(tab, size)
+{
+    console.log("Tableau non trié, tri par tas : ", tab);
+    for(let i = Math.floor(size/2) + 1; i > 1; i--)
     {
-        return tabGauche;
+        Tamiser(tab, i, size);
     }
-    if(tabGauche[0] < tabDroite [0])
+    for(let j = size; j > 2; j--)
     {
-        return tabGauche[0].concat(fusion(tabGauche[1], ...[tabGauche.length], tabDroite));
-        console.log("Tableau trié, tri FUSION 1 : ", tabGauche);
+        stockElement = tab[j];
+        tab[j] = tab[1];
+        tab[1] = stockElement;
+        Tamiser(tab, 1, j-1);
+
     }
-    else
-    {
-        return tabDroite[0].concat(fusion(tabGauche, tabDroite[1], ...[tabDroite.length]));
-        console.log("Tableau trié, tri FUSION 2 : ", tabDroite);
-    }
+    return tab;
+    console.log("Tableau trié fini, tri par tas : ", tab);
 }
+
+function Tamiser(tab, elem, size)
+{
+    let k = elem;
+    for(let j = 2*k; j < size; j++)
+    {
+        if(j < size && tab[j] < tab[j + 1])
+        {
+            continue;
+        }
+        if(tab[k] < tab[j])
+        {
+            stockElement = tab[k];
+            tab[k] = tab[j];
+            tab[j] = stockElement;
+            k = j;
+            j = 2*k;
+            console.log("Tableau trié , tri par tas : ", tab);
+        }
+        else
+        {
+            j = size + 1;
+        }
+    }
+    return tab;
+}
+
+
 
 //myAlgo(tabToSortPerso);
 //InsertionSort(tabToSortInsertion, 1, 0);
@@ -240,8 +304,8 @@ function fusion(tabGauche, tabDroite)
 //BubbleSortWithStop(tabToSortBulleStop);
 //ShellSort(tabToSortShell);
 //QuickSort(tabToSortQuick, 0, tabToSortQuick.length -1);
-MergeSort(tabToSortMerge);
-
+//MergeSort(tabToSortMerge, tabToSortMerge.length);
+HeapSort(tabToSortHeap, tabToSortHeap.length);
 
 
 
