@@ -199,59 +199,75 @@ function QuickSort(tab, firstElem, lastElem)
     console.log("Tableau trié fini, tri rapide : ", tab);
 }
 
-/*function MergeSort(tab, size)
+function MergeSort(tab)
 {
-    console.log("Tableau non trié, tri fusion : ", tab);
-    let mid = Math.floor(size/2);
-    let afterMid = size - mid;
-    let testTab = [];
-    if(afterMid >= 2)
-    {
-        testTab = MergeSort(tab, afterMid);
-        if(mid >= 2)
-        {
-            MergeSort(testTab, size);
-        }
-    }
-    else
-    {
-        return testTab;
-    }
-    testTab = fusion(tab, afterMid, testTab, mid);
+    console.log("Tableau encore en train de trié, tri fusion : ", tab);
 
-    return testTab;
-    console.log("Tableau trié fini, tri fusion : ", testTab);
+    if(tab.length > 1)
+    {
+        let milieu = Math.floor(tab.length/2);
+        let tabGauche = [];
+        let tabDroite = [];
+
+
+        for(let i = 0; i < milieu; i++)
+        {
+            tabGauche[i] = tab[i];
+        }
+        for(let j = milieu; j < tab.length; j++)
+        {
+            tabDroite[j] = tab[j];
+        }
+
+        MergeSort(tabGauche);
+        MergeSort(tabDroite);
+
+        fusion(tab, tabGauche, tabDroite);
+    }
+    console.log("Tableau trié fini, tri fusion : ", tab);
+    return tab;
 }
 
-function fusion(tab, afterMid, tabDiv, middle)
+function fusion(tab, gauche, droite)
 {
-    for(let i = 0; i < tab.length; i++)
+
+    let i = 0;
+    let j = 0;
+    let k = 0;
+    console.log("Tableau trié , tri fusion debut : ", tab);
+    while (i < gauche.length && j < droite.length)
     {
-        if(tab[i+1] > tabDiv[i+1])
+        if(gauche[i] < droite[j])
         {
-            tab[i+1] = tabDiv[i+1];
-            if(middle == 1)
-            {
-                break;
-            }
-            middle--;
+            tab[k] = gauche[i];
+            i++;
         }
         else
         {
-            if(afterMid == 1)
-            {
-                while(middle >= 1)
-                {
-                    tabDiv[i] = tabDiv[i + 1];
-                    middle--;
-                }
-                break;
-            }
-            afterMid--;
+            tab[k] = droite[j];
+            j++;
+        }
+        k++;
+        console.log("Tableau trié , tri fusion : ", tab);
+        console.log("Tableau gauche trié , tri fusion : ", gauche);
+        console.log("Tableau droite trié , tri fusion : ", droite);
+    }
+    if(k <= tab.length)
+    {
+        while(i <= gauche.length)
+        {
+            tab[k] = gauche[i];
+            i++;
+            k++;
+        }
+        while(j <= droite.length)
+        {
+            tab[k] = droite[j];
+            j++;
+            k++;
         }
     }
-    return tabDiv;
-}*/
+}
 
 function HeapSort(tab, size)
 {
@@ -306,8 +322,8 @@ function Tamiser(tab, elem, size)
 //BubbleSortWithoutStop(tabToSortBulle);
 //BubbleSortWithStop(tabToSortBulleStop);
 //ShellSort(tabToSortShell);
-QuickSort(tabToSortQuick, 0, tabToSortQuick.length -1);
-//MergeSort(tabToSortMerge, tabToSortMerge.length);
+//QuickSort(tabToSortQuick, 0, tabToSortQuick.length -1);
+MergeSort(tabToSortMerge);
 //HeapSort(tabToSortHeap, tabToSortHeap.length);
 
 
