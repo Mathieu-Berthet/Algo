@@ -225,7 +225,7 @@ function MergeSort(tab)
         fusion(tab, tabGauche, tabDroite);
     }
     console.log("Tableau trié fini, tri fusion : ", tab);
-    return tab;
+    //return tab;
 }
 
 function fusion(tab, gauche, droite)
@@ -272,7 +272,7 @@ function fusion(tab, gauche, droite)
 function HeapSort(tab, size)
 {
     console.log("Tableau non trié, tri par tas : ", tab);
-    for(let i = Math.floor(size/2) + 1; i > 1; i--)
+    for(let i = Math.floor(size/2); i > 0; i--)
     {
         Tamiser(tab, i, size);
     }
@@ -291,11 +291,12 @@ function HeapSort(tab, size)
 function Tamiser(tab, elem, size)
 {
     let k = elem;
-    for(let j = 2*k; j < size; j++)
+    let j = 2*k;
+    while(j <= size)
     {
         if(j < size && tab[j] < tab[j + 1])
         {
-            continue;
+            j++;
         }
         if(tab[k] < tab[j])
         {
@@ -323,8 +324,8 @@ function Tamiser(tab, elem, size)
 //BubbleSortWithStop(tabToSortBulleStop);
 //ShellSort(tabToSortShell);
 //QuickSort(tabToSortQuick, 0, tabToSortQuick.length -1);
-MergeSort(tabToSortMerge);
-//HeapSort(tabToSortHeap, tabToSortHeap.length);
+//MergeSort(tabToSortMerge);
+HeapSort(tabToSortHeap, tabToSortHeap.length);
 
 
 
