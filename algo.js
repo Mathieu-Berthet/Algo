@@ -8,6 +8,7 @@ let tabToSortBulleStop = [3,9,7,1,6,2,8,4,5];
 let tabToSortShell = [3,9,7,1,6,2,8,4,5];
 let tabToSortPerso = [3,9,7,1,6,2,8,4,5];
 let tabToSortQuick = [3,9,7,1,6,2,8,4,5];
+//let tabToSortQuick2 = [3,9,7,1];
 let tabToSortMerge = [3,9,7,1,6,2,8,4,5];
 let tabToSortHeap = [3,9,7,1,6,2,8,4,5];
 let stockElement = 0;
@@ -189,7 +190,9 @@ function QuickSort(tab, firstElem, lastElem)
     if(firstElem < lastElem)
     {
         let pivot = lastElem;
+        console.log("Pivot 1 : ", tab[pivot]);
         pivot = partage(tab, firstElem, lastElem, pivot);
+        console.log("Pivot 2 : ", tab[pivot]);
         QuickSort(tab, firstElem, pivot - 1);
         QuickSort(tab, pivot + 1, lastElem);
     }
@@ -303,9 +306,9 @@ function Tamiser(tab, elem, size)
 //BubbleSortWithoutStop(tabToSortBulle);
 //BubbleSortWithStop(tabToSortBulleStop);
 //ShellSort(tabToSortShell);
-//QuickSort(tabToSortQuick, 0, tabToSortQuick.length -1);
+QuickSort(tabToSortQuick, 0, tabToSortQuick.length -1);
 //MergeSort(tabToSortMerge, tabToSortMerge.length);
-HeapSort(tabToSortHeap, tabToSortHeap.length);
+//HeapSort(tabToSortHeap, tabToSortHeap.length);
 
 
 
