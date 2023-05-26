@@ -164,7 +164,7 @@ function partage(tab, first, last, pivot)
     tab[pivot] = tab[last];
     tab[last] = stockElement;
 
-    j = first;
+    let j = first;
     for(let i = first; i < last; i++)
     {
         if(tab[i] <= tab[last])
@@ -265,8 +265,8 @@ function HeapSort(tab, size)
         Tamiser(tab, 1, j-1);
 
     }
-    return tab;
     console.log("Tableau trié fini, tri par tas : ", tab);
+    return tab;
 }
 
 function Tamiser(tab, elem, size)
